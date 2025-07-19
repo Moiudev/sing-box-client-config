@@ -207,12 +207,28 @@
                 "action": "hijack-dns"
             },
             {
-                "rule_set": "anti-ad",
-                "action": "reject"
+                "ip_is_private": true,
+                "outbound": "direct"
             },
             {
-                "ip_is_private": true,
-                "outbound": "direct-out"
+                "type": "logical",
+                "mode": "or",
+                "rules": [
+                    {
+                        "port": 853
+                    },
+                    {
+                        "network": "udp",
+                        "port": 443
+                    },
+                    {
+                        "protocol": "stun"
+                    },
+                    {
+                        "rule_set": "anti-ad"
+                    }
+                ],
+                "action": "reject"
             },
             {
                 "clash_mode": "全局",

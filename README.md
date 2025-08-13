@@ -21,15 +21,24 @@
                 "server": "dns.google"
             },
             {
-                "type": "udp",
-                "tag": "dns-resolver",
-                "server": "1.1.1.1"
-            },
-            {
                 "type": "fakeip",
                 "tag": "fakeip",
                 "inet4_range": "198.18.0.0/15",
                 "inet6_range": "fc00::/18"
+            },
+            {
+                "type": "hosts",
+                "tag": "dns-resolver",
+                "predefined": {
+                    "dns.alidns.com": [
+                        "223.5.5.5",
+                        "223.6.6.6"
+                    ],
+                    "dns.google": [
+                        "8.8.8.8",
+                        "8.8.4.4"
+                    ]
+                }
             }
         ],
         "rules": [
@@ -40,6 +49,11 @@
             {
                 "clash_mode": "直连",
                 "server": "alidns"
+            },
+            {
+                "rule_set": "anti-ad",
+                "action": "predefined",
+                "rcode": "REFUSED"
             },
             {
                 "query_type": [
@@ -84,12 +98,19 @@
         {
             "type": "tun",
             "tag": "tun-in",
+            "mtu": 65535,
             "address": [
                 "172.19.0.1/30",
                 "fdfe:dcba:9876::1/126"
             ],
             "auto_route": true,
             "strict_route": true,
+            "route_address": [
+                "0.0.0.0/1",
+                "128.0.0.0/1",
+                "::/1",
+                "8000::/1"
+            ],
             "route_exclude_address": [
                 "192.168.0.0/16",
                 "10.0.0.0/8",
@@ -171,9 +192,7 @@
                 "enabled": true,
                 "server_name": "bing.com",
                 "insecure": true,
-                "alpn": [
-                    "h3"
-                ]
+                "alpn": "h3"
             }
         },
         {

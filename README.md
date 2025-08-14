@@ -10,15 +10,15 @@
         "servers": [
             {
                 "type": "https",
-                "tag": "alidns",
-                "domain_resolver": "dns-resolver",
-                "server": "dns.alidns.com"
-            },
-            {
-                "type": "https",
                 "tag": "google",
                 "domain_resolver": "dns-resolver",
                 "server": "dns.google"
+            },
+            {
+                "type": "https",
+                "tag": "alidns",
+                "domain_resolver": "dns-resolver",
+                "server": "dns.alidns.com"
             },
             {
                 "type": "fakeip",
@@ -51,11 +51,6 @@
                 "server": "alidns"
             },
             {
-                "rule_set": "anti-ad",
-                "action": "predefined",
-                "rcode": "REFUSED"
-            },
-            {
                 "query_type": [
                     "HTTPS",
                     "SVCB"
@@ -69,6 +64,11 @@
                 ],
                 "server": "fakeip",
                 "rewrite_ttl": 1
+            },
+            {
+                "rule_set": "anti-ad",
+                "action": "predefined",
+                "rcode": "REFUSED"
             },
             {
                 "rule_set": "geosite-geolocation-cn",
@@ -90,7 +90,6 @@
                 "client_subnet": "1.0.1.0/24"
             }
         ],
-        "final": "google",
         "strategy": "prefer_ipv6",
         "independent_cache": true
     },
@@ -98,19 +97,12 @@
         {
             "type": "tun",
             "tag": "tun-in",
-            "mtu": 65535,
             "address": [
                 "172.19.0.1/30",
                 "fdfe:dcba:9876::1/126"
             ],
             "auto_route": true,
             "strict_route": true,
-            "route_address": [
-                "0.0.0.0/1",
-                "128.0.0.0/1",
-                "::/1",
-                "8000::/1"
-            ],
             "route_exclude_address": [
                 "192.168.0.0/16",
                 "10.0.0.0/8",

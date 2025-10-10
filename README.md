@@ -32,16 +32,25 @@
                 "predefined": {
                     "dns.alidns.com": [
                         "223.5.5.5",
-                        "223.6.6.6"
+                        "223.6.6.6",
+                        "2400:3200::1",
+                        "2400:3200:baba::1"
                     ],
                     "dns.google": [
                         "8.8.8.8",
-                        "8.8.4.4"
+                        "8.8.4.4",
+                        "2001:4860:4860::8888",
+                        "2001:4860:4860::8844"
                     ]
                 }
             }
         ],
         "rules": [
+            {
+                "rule_set": "anti-ad",
+                "action": "predefined",
+                "rcode": "REFUSED"
+            },
             {
                 "clash_mode": "全局",
                 "server": "google"
@@ -53,6 +62,7 @@
             {
                 "query_type": [
                     "HTTPS",
+                    "PTR",
                     "SVCB"
                 ],
                 "action": "reject"
@@ -64,11 +74,6 @@
                 ],
                 "server": "fakeip",
                 "rewrite_ttl": 1
-            },
-            {
-                "rule_set": "anti-ad",
-                "action": "predefined",
-                "rcode": "REFUSED"
             },
             {
                 "rule_set": "geosite-geolocation-cn",
@@ -104,10 +109,21 @@
             "auto_route": true,
             "strict_route": true,
             "route_exclude_address": [
-                "192.168.0.0/16",
                 "10.0.0.0/8",
+                "100.64.0.0/10",
+                "169.254.0.0/16",
                 "172.16.0.0/12",
-                "fc00::/7"
+                "192.0.0.0/24",
+                "192.168.0.0/16",
+                "224.0.0.0/4",
+                "240.0.0.0/4",
+                "fc00::/7",
+                "fe80::/10",
+                "ff01::/16",
+                "ff02::/16",
+                "ff03::/16",
+                "ff04::/16",
+                "ff05::/16"
             ],
             "stack": "gvisor",
             "platform": {

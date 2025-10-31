@@ -47,11 +47,6 @@
         ],
         "rules": [
             {
-                "rule_set": "anti-ad",
-                "action": "predefined",
-                "rcode": "REFUSED"
-            },
-            {
                 "clash_mode": "全局",
                 "server": "google"
             },
@@ -249,10 +244,13 @@
                         "port": 443
                     },
                     {
-                        "protocol": "stun"
+                        "protocol":[
+                            "quic",
+                            "stun"
+                        ]
                     },
                     {
-                        "rule_set": "anti-ad"
+                        "rule_set": "ads"
                     }
                 ],
                 "action": "reject"
@@ -287,14 +285,13 @@
         "rule_set": [
             {
                 "type": "remote",
-                "tag": "anti-ad",
-                "url": "https://raw.githubusercontent.com/Moiudev/anti-ad/main/ad.srs",
-                "update_interval": "2h"
+                "tag": "ads",
+                "url": "https://raw.githubusercontent.com/Moiudev/rule-set/main/ads.srs"
             },
             {
                 "type": "remote",
                 "tag": "geoip-cn",
-                "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geoip/cn.srs"
+                "url": "https://raw.githubusercontent.com/Moiudev/rule-set/main/geoip-cn.srs"
             },
             {
                 "type": "remote",

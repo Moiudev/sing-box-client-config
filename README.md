@@ -48,7 +48,7 @@
         "rules": [
             {
                 "clash_mode": "全局",
-                "server": "google"
+                "server": "fakeip"
             },
             {
                 "clash_mode": "直连",

@@ -286,7 +286,8 @@
             {
                 "type": "remote",
                 "tag": "ads",
-                "url": "https://raw.githubusercontent.com/Moiudev/rule-set/main/ads.srs"
+                "url": "https://raw.githubusercontent.com/Moiudev/rule-set/main/ads.srs",
+                "update_interval": "1h"
             },
             {
                 "type": "remote",

@@ -71,7 +71,7 @@
                 "rewrite_ttl": 1
             },
             {
-                "rule_set": "geosite-geolocation-cn",
+                "rule_set": "geolocation-cn",
                 "server": "alidns"
             },
             {
@@ -79,7 +79,7 @@
                 "mode": "and",
                 "rules": [
                     {
-                        "rule_set": "geosite-geolocation-!cn",
+                        "rule_set": "geolocation-!cn",
                         "invert": true
                     },
                     {
@@ -250,7 +250,10 @@
                         ]
                     },
                     {
-                        "rule_set": "ads"
+                        "rule_set": [
+                            "ads",
+                            "porn"
+                        ]
                     }
                 ],
                 "action": "reject"
@@ -264,7 +267,7 @@
                 "outbound": "direct-out"
             },
             {
-                "rule_set": "geosite-geolocation-cn",
+                "rule_set": "geolocation-cn",
                 "outbound": "direct-out"
             },
             {
@@ -275,7 +278,7 @@
                         "rule_set": "geoip-cn"
                     },
                     {
-                        "rule_set": "geosite-geolocation-!cn",
+                        "rule_set": "geolocation-!cn",
                         "invert": true
                     }
                 ],
@@ -286,8 +289,7 @@
             {
                 "type": "remote",
                 "tag": "ads",
-                "url": "https://raw.githubusercontent.com/Moiudev/rule-set/main/ads.srs",
-                "update_interval": "1h"
+                "url": "https://raw.githubusercontent.com/Moiudev/rule-set/main/ads.srs"
             },
             {
                 "type": "remote",
@@ -296,13 +298,18 @@
             },
             {
                 "type": "remote",
-                "tag": "geosite-geolocation-cn",
-                "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/geolocation-cn.srs"
+                "tag": "geolocation-cn",
+                "url": "https://raw.githubusercontent.com/Moiudev/rule-set/main/geolocation-cn.srs"
             },
             {
                 "type": "remote",
-                "tag": "geosite-geolocation-!cn",
-                "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/geolocation-!cn.srs"
+                "tag": "geolocation-!cn",
+                "url": "https://raw.githubusercontent.com/Moiudev/rule-set/main/geolocation-!cn.srs"
+            },
+            {
+                "type": "remote",
+                "tag": "porn",
+                "url": "https://raw.githubusercontent.com/Moiudev/rule-set/main/porn.srs"
             }
         ],
         "final": "手动选择",
